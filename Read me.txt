@@ -1,0 +1,5 @@
+
+Coller le dossier "media" directement dans "Urban Marginal"
+
+
+Lancez un serveur (bouton Start) puis lancez autant de clients que vous le désirez(bouton Connect).
