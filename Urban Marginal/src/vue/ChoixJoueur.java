@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import controleur.Controle;
 import controleur.Global;
+import outils.son.Son;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,7 +35,10 @@ public class ChoixJoueur extends JFrame implements Global{
 	private JTextField txtPseudo;
 	private JLabel lblPersonnage;
 	private Controle controle;
-
+	private Son precedent;
+	private Son suivant;
+	private Son go;
+	private Son welcome;
 	
 	
 
@@ -47,17 +51,23 @@ public class ChoixJoueur extends JFrame implements Global{
 	 * Changement de personnage au clic sur la flèche "précédent"
 	 */
 	private void lblPrecedent_clic() {
+		precedent.play();
 		numPerso = ((numPerso+1) % NBPERSOS) + 1;
 		affichePerso();	
 	}
+	
+	
 	
 	/**
 	 * Changement de personnage au clic sur la flèche "suivant"
 	 */
 	private void lblSuivant_clic() {
+		suivant.play();
 		numPerso = (numPerso % NBPERSOS) + 1 ;
 		affichePerso();
 	}
+	
+	
 	
 	/**
 	 * Gestion du clic sur le bouton "Go"
@@ -68,9 +78,12 @@ public class ChoixJoueur extends JFrame implements Global{
 			txtPseudo.requestFocus();
 		}
 		else {
+			go.play();
 			controle.evenementVue(this, PSEUDO + SEPARE + txtPseudo.getText() + SEPARE + numPerso);
 		}
 	}
+	
+	
 	
 	/**
 	 * Curseur souris classique
@@ -189,6 +202,13 @@ public class ChoixJoueur extends JFrame implements Global{
 		numPerso = 1; // On part du premier personnage de la liste
 		affichePerso();
 		
+		// Sons
+		precedent = new Son(SONPRECEDENT);
+		suivant = new Son(SONSUIVANT);
+		go = new Son(SONGO);
+		welcome = new Son(SONWELCOME);
+
+		welcome.play();
 	}
 	
 	

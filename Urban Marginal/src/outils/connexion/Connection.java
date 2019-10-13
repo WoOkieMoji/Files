@@ -29,8 +29,9 @@ public class Connection extends Thread {
 	 * Envoi d'informations aux ordinateurs distants Clients ou Serveur
 	 * @param unObjet
 	 */
-	public void envoi(Object unObjet) {
+	public synchronized void envoi(Object unObjet) {
 		try {
+			this.out.reset();
 			out.writeObject(unObjet);
 			out.flush(); // On vide le canal de sortie
 		} catch (IOException e) {
@@ -81,6 +82,7 @@ public class Connection extends Thread {
 				System.exit(0);
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "l’ordinateur distant s’est déconnecté");
+				((controleur.Controle)leRecepteur).deconnection(this);
 				inOk = false;
 				try {
 					in.close();

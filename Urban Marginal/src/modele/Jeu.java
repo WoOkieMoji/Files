@@ -6,10 +6,18 @@ import controleur.Controle;
 import outils.connexion.Connection;
 
 
+
+
+
 public abstract class Jeu {
 
+	
+	
 	// **************** Propriétés ****************
 	protected Controle controle;
+	
+	
+	
 	
 	// **************** Méthodes ****************
 	
@@ -20,12 +28,16 @@ public abstract class Jeu {
 	 */
 	public abstract void setConnection(Connection connection);
 	
+	
+	
 	/**
 	 * Réception d'une information
 	 * @param connection
 	 * @param info
 	 */
 	public abstract void reception(Connection connection, Object info);
+	
+	
 	
 	/**
 	 * Envoi d'une information
@@ -36,4 +48,11 @@ public abstract class Jeu {
 		connection.envoi(info);
 	}
 	
+	
+	
+	/**
+	 * Déconnexion de l'ordinateur distant
+	 * @param connection
+	 */
+	public abstract void deconnection(Connection connection);
 }
